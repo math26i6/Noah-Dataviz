@@ -281,17 +281,18 @@ animation-iteration-count: infinite;
 
 </body>
 <script>
+    //    Alle elementer i datavisen laves om til en variabel.
     var slider = document.getElementById("myRange");
-
     var co2 = document.getElementById("ton");
     var tid = document.getElementById("timer");
     var tid2 = document.getElementById("minutter");
 
     var theJson;
+    //    Global variabel som bruges som objekt til et array, hvor vi løber al vores JSON data igennem.
 
     document.addEventListener("DOMContentLoaded", getList);
 
-
+    //    Async funktion som henter JSON data, fra vores dataset og tiljøjer det til vores globale variabel.
     async function getList() {
         let jsonData = await fetch("https://spreadsheets.google.com/feeds/list/1T7QLxXy3YAkULDdFjzzs8l9kez4-OnIH1FowfuraoSI/od6/public/values?alt=json");
         theJson = await jsonData.json();
@@ -305,12 +306,16 @@ animation-iteration-count: infinite;
     co2.innerHTML = slider.value;
     //    Sætter default value (50) og udskriver den
 
+
+    //    Laver alle vores landeknapper til en variabel så vi senere hen kan tildele JSON data.
     var cairo = document.getElementById("cairo");
     var moskva = document.getElementById("moskva");
     var new_york = document.getElementById("newyork");
     var accra = document.getElementById("accra");
     var nuuk = document.getElementById("nuuk");
 
+
+    //    funktion som udregner det korrekte output for data, når man rykker på slideren.
     slider.oninput = function() {
         const kvarter = this.value;
         const timer = Math.floor(kvarter / 4);
@@ -322,10 +327,11 @@ animation-iteration-count: infinite;
         tid2.innerHTML = minutter;
     }
 
-    //    ændrer valuen på tryk
 
 
 
+
+    //Funktion der fremviser den korrekte data for et hvis land.
     function showJson() {
 
 
